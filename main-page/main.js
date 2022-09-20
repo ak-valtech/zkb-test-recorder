@@ -1,10 +1,10 @@
 import App from './App.svelte'
 
 const div = document.createElement('div')
-div.id = 'test-recorder-app'
+div.style.display = 'none'
 document.body.appendChild(div)
 
 new App({
-	target: div
+	target: div,
 })
 
