@@ -1,8 +1,13 @@
 import App from './App.svelte'
 
-const div = document.createElement('div')
-div.style.display = 'none'
-document.body.appendChild(div)
+let div = document.getElementById('test-recorder')
+if (!div) {
+	div = document.createElement('div')
+	div.id = 'test-recorder'
+	div.style.display = 'none'
+	document.body.appendChild(div)
+}
+div.innerHTML = ''
 
 new App({
 	target: div,

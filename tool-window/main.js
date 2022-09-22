@@ -1,4 +1,8 @@
 import App from './App.svelte'
 
-new App({target: document.body})
+document.body.innerHTML = ''
+
+new App({
+	target: document.body,
+})
 

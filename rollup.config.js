@@ -1,9 +1,10 @@
-import svelte from 'rollup-plugin-svelte'
+import alias from '@rollup/plugin-alias'
 import commonjs from '@rollup/plugin-commonjs'
-import resolve from '@rollup/plugin-node-resolve'
-import livereload from 'rollup-plugin-livereload'
-import {terser} from 'rollup-plugin-terser'
 import css from 'rollup-plugin-css-only'
+import livereload from 'rollup-plugin-livereload'
+import resolve from '@rollup/plugin-node-resolve'
+import svelte from 'rollup-plugin-svelte'
+import {terser} from 'rollup-plugin-terser'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -35,6 +36,12 @@ export default [
 			file: 'public/build/main-page.js',
 		},
 		plugins: [
+			alias({
+				entries: [
+					{find: 'components', replacement: '../components'},
+					{find: 'libraries', replacement: '../libraries'},
+				],
+			}),
 			svelte({compilerOptions: {dev: !production}}),
 			resolve({
 				browser: true,
@@ -57,6 +64,12 @@ export default [
 			file: 'public/build/tool-window.js',
 		},
 		plugins: [
+			alias({
+				entries: [
+					{find: 'components', replacement: '../components'},
+					{find: 'libraries', replacement: '../libraries'},
+				],
+			}),
 			svelte({compilerOptions: {dev: !production}}),
 			css({output: 'tool-window.css'}),
 			resolve({
