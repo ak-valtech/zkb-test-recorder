@@ -2,13 +2,13 @@
 	import {onMount} from 'svelte'
 
 	import events from 'libraries/events'
-	import {createChildWindow, sendToChild as send} from 'libraries/window-communication'
+	import {createChildWindow, send} from 'libraries/window-communication'
+	import {parentState as state} from 'stores/state'
 
 	async function processChildMessage({event}) {
-		console.log(event)
 		switch (event) {
 			case events.CHILD_WINDOW_INITIALIZED:
-				await send({ event: events.STATE_SYNC, payload: null})
+				$state.test = 1
 				break
 		}
 	}

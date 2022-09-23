@@ -40,6 +40,7 @@ export default [
 				entries: [
 					{find: 'components', replacement: '../components'},
 					{find: 'libraries', replacement: '../libraries'},
+					{find: 'stores', replacement: '../stores'},
 				],
 			}),
 			svelte({compilerOptions: {dev: !production}}),
@@ -68,6 +69,7 @@ export default [
 				entries: [
 					{find: 'components', replacement: '../components'},
 					{find: 'libraries', replacement: '../libraries'},
+					{find: 'stores', replacement: '../stores'},
 				],
 			}),
 			svelte({compilerOptions: {dev: !production}}),
@@ -77,7 +79,6 @@ export default [
 				dedupe: ['svelte'],
 			}),
 			commonjs(),
-			!production && livereload('public'),
 			production && terser(),
 		],
 		watch: {
