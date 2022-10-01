@@ -1,29 +1,15 @@
 <script>
-	import events from 'libraries/events'
-	import {send} from 'libraries/window-communication'
-	import {state as state} from 'stores/state'
-
-	async function processParentMessage({event, payload}) {
-		console.log(event)
-		console.log(payload)
-	}
-
-	if (!window.recorderInitialized) {
-		window.recorderInitialized = true
-		window.addEventListener('message', async ({data}) => processParentMessage(JSON.parse(data)))
-	}
-	send({event: events.CHILD_WINDOW_INITIALIZED, payloadType: state})
+	import {state} from 'stores/state'
 
 	async function recorderButtonClick() {
-		await send({event: events.RECORDER_BUTTON_CLICK})
 	}
 </script>
 
 <header>
 	<button id="recorder-button" on:click={async () => await recorderButtonClick()}>Start Recording</button>
 </header>
+{JSON.stringify($state)}
 
-{$state.test}
 <style>
 	:global(:root) {
 		--menu-background: black;

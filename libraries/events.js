@@ -1,5 +1,8 @@
 export default {
 	CHILD_WINDOW_INITIALIZED: 'child-window-initialized',
-	RECORDER_BUTTON_CLICK: 'recorder-button-click',
-	STATE_SYNC: 'state-sync',
+
+	EXECUTE_SCRIPT: 'execute-script',
+
+	PUSH_STATE: 'push-state',
+	REQUEST_STATE: 'request-state',
 }
