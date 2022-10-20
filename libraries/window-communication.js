@@ -1,4 +1,5 @@
 import events from 'libraries/events'
+import {log} from 'libraries/log'
 
 let toolWindow
 
@@ -20,7 +21,8 @@ export async function createChildWindow() {
 }
 
 export async function send(data) {
-	await window?.send(data)
+	log(window.send, data)
+	typeof window?.send === 'function' && await window.send(data)
 }
 
 export async function executeScript(script) {

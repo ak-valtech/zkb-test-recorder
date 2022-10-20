@@ -9,14 +9,7 @@ window.send = sendToParent
 const send = window.send
 
 async function processParentMessage({event, payload}) {
-	// switch (event) {
-	// 	case events.PUSH_STATE:
-	// 		log('received state')
-	// 		break
-	// 	case events.REQUEST_STATE:
-	// 		await send({event: events.PUSH_STATE, payload: state})
-	// 		break
-	// }
+	console.log(event)
 }
 
 if (!window.recorderInitialized) {

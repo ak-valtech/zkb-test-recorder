@@ -14,8 +14,8 @@ if (!window?.recorder?.stateSync) {
 	window.addEventListener('message', async ({data}) => {
 		const {event, payload} = JSON.parse(data)
 		if (event === events.PUSH_STATE) {
-			if (window.recorder.state)
-				window.recorder.state =
+			// if (window.recorder.state)
+			// 	window.recorder.state =
 		}
 	})
 }

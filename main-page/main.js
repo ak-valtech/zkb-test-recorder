@@ -34,6 +34,7 @@ async function processChildMessage({event, payload}) {
 			await send({event: events.PUSH_STATE})
 			break
 	}
+	console.log(event)
 }
 
 if (!window.recorderInitialized) {
@@ -42,4 +43,3 @@ if (!window.recorderInitialized) {
 }
 
 new App({target: div})
-
