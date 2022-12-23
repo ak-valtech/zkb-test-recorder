@@ -1,4 +1,3 @@
-import alias from '@rollup/plugin-alias'
 import commonjs from '@rollup/plugin-commonjs'
 import css from 'rollup-plugin-css-only'
 import livereload from 'rollup-plugin-livereload'
@@ -37,13 +36,6 @@ export default [
 			file: 'public/build/main-page.js',
 		},
 		plugins: [
-			alias({
-				entries: [
-					{find: 'components', replacement: '../components'},
-					{find: 'libraries', replacement: '../libraries'},
-					{find: 'stores', replacement: '../stores'},
-				],
-			}),
 			svelte({compilerOptions: {dev: !production}}),
 			resolve({
 				browser: true,
@@ -66,13 +58,6 @@ export default [
 			file: 'public/build/tool-window.js',
 		},
 		plugins: [
-			alias({
-				entries: [
-					{find: 'components', replacement: '../components'},
-					{find: 'libraries', replacement: '../libraries'},
-					{find: 'stores', replacement: '../stores'},
-				],
-			}),
 			svelte({compilerOptions: {dev: !production}}),
 			css({output: 'tool-window.css'}),
 			resolve({

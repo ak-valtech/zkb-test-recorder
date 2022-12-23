@@ -1,42 +1,73 @@
 <script>
-	import {state} from 'stores/state'
+	import {onMount} from 'svelte'
+	import TestListItem from './Components/TestListItem.svelte'
+	import TestDetail from './Components/TestDetail.svelte'
 
-	async function recorderButtonClick() {
-	}
+	let tests = []
+	let selectedTest
+
+	onMount(async () => {
+		const storedTests = window.localStorage.getItem('testCases')
+		if (storedTests) {
+			tests = JSON.parse(storedTests)
+			selectedTest = tests[0] || null
+		}
+	})
 </script>
 
-<header>
-	<button id="recorder-button" on:click={async () => await recorderButtonClick()}>Start Recording</button>
-</header>
-{JSON.stringify($state)}
+<div class="test-section">
+	<ul class="test-list">
+		{#each tests as test}
+			<li class:selected={selectedTest === test} on:click={() => {selectedTest = test}}>
+				<TestListItem {test}/>
+			</li>
+		{/each}
+	</ul>
+	{#if selectedTest}
+		<div class="test-details">
+			<TestDetail test={selectedTest}/>
+		</div>
+	{/if}
+</div>
 
 <style>
-	:global(:root) {
-		--menu-background: black;
-		--menu-color: whitesmoke;
-	}
-
 	:global(html, body) {
 		margin: 0;
 		padding: 0;
 	}
 
-	header {
-		align-items: center;
-		background: var(--menu-background);
-		color: var(--menu-color);
+	.test-section {
 		display: flex;
-		padding: .5rem;
 		width: 100%;
 	}
 
-	#recorder-button {
-		border-radius: 100%;
-		height: 5rem;
-		width: 5rem;
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
 	}
 
-	#recorder-button:hover {
-		background: rgb(255, 200, 200);
+	li:nth-child(2n+1) {
+		background: lightgray;
+	}
+
+	li:hover {
+		background: lightyellow;
+	}
+
+	li.selected {
+		background: yellow;
+	}
+
+	.test-list {
+		flex-grow: 1;
+	}
+
+	.test-details {
+		box-shadow: grey 0 0 8px;
+		flex-basis: 40rem;
+		flex-grow: 3;
+		padding: 0.5rem;
 	}
 </style>
